@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Categories</title>
+</head>
+<body>
+<h1>Categories</h1>
+
+<a href="/categories/new">Add New Category</a><br/><br/>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Products Count</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="category : ${categories}">
+        <td th:text="${category.id}">1</td>
+        <td th:text="${category.name}">Category Name</td>
+        <td th:text="${#lists.size(category.products)}">0</td>
+        <td>
+            <a th:href="@{'/categories/edit/' + ${category.id}}">Edit</a> |
+            <a th:href="@{'/categories/delete/' + ${category.id}}"
+               onclick="return confirm('Are you sure?')">Delete</a>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+
+<a href="/products">View Products</a>
+</body>
+</html>
